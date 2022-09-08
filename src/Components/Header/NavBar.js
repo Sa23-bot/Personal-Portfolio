@@ -7,31 +7,32 @@ import { Link } from "react-scroll";
 const Links = [
   {
     id: 1,
-    link: "home",
+    link: "Home",
   },
   {
     id: 2,
-    link: "about",
+    link: "About",
   },
   {
     id: 3,
-    link: "portifolio",
+    link: "Skills",
   },
   {
     id: 4,
-    link: "experience",
+    link: "Experience",
   },
   {
     id: 5,
-    link: "contact",
+    link: "Contact",
   },
 ];
 
 const NavBar = () => {
   const [menuiconclick, setMenuIconClick] = useState(false);
-
+  const clicked = () => {setMenuIconClick(!menuiconclick)};
+  
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r fixed">
+    <div className="flex justify-between items-center w-full h-[80px] px-4 bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r fixed">
       <div>
         <h1 className="text-5xl font-signature text-white ml-2">Ezgihaysh</h1>
         {/* <img src={logo} alt="" className="flex rounded-full w-20 h-30"/> */}
@@ -56,7 +57,7 @@ const NavBar = () => {
         onClick={() => setMenuIconClick(!menuiconclick)}
         className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
       >
-        {menuiconclick ? <FaTimes size={30} /> : <FaBars size={30} />}
+        {menuiconclick ? <FaTimes size={30} className="animate-bounce"/>  : <FaBars size={30} className="animate-pulse"/>}
       </div>
 
       {/* List of the menus */}
@@ -68,7 +69,7 @@ const NavBar = () => {
               key={link.id}
               className="px-8 py-8 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 duration-200 hover:text-gray-300 text-3xl"
             >
-              {link.link}
+              <Link onClick={clicked} to={link.link} smooth duration={500}>{link.link}</Link>
             </li>
           ))}
         </ul>
